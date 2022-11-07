@@ -2,12 +2,16 @@
 ##Ler os nomes e os tempos(s) v
 ##Guardar informações em uma matriz v
 
-##a) Qual foi a melhor volta, e quem a fez
+##a) Qual foi a melhor volta, e quem a fez v
 ##b) Classificação geral(Em ordem decressente)
 ##c) A volta com a média mais rápida
 
 
 pilotos = []
+menorTempo = 100
+melhorVolta = 100
+melhorCorredor = ''
+
 
 ##Dever ter 6, caso menos, teste
 for p in range(2): ##Laço para definição dos corredores
@@ -19,21 +23,20 @@ for p in range(2): ##Laço para definição dos corredores
     for v in range(3): #For para a definição dos tempos
         tempo = int(input(f"Digite o tempo do {p+1}º corredor, em segundos, da {v+1} volta "))
         tempos.append(tempo)
+        somaTempos = 0
+
+        if tempo < menorTempo:
+            menorTempo = tempo
+            melhorCorredor = nome
+            melhorVolta = v+1
+
+        somaTempos += tempo
+
     corredor.append(tempos)
     pilotos.append(corredor)
 
 
-melhorVolta = 0
-melhorCorredor = 'a'
-
-
-for mv in pilotos: ##For para varrer o array pilotos
-    for t in range(6):
-        if pilotos[mv][t] < melhorVolta:
-            melhorVolta = pilotos[mv][t]
-            melhorCorredor = pilotos[0]
-
-
-
 print(melhorCorredor)
 print(melhorVolta)
+
+print(f'A melhor volta foi a {melhorVolta}ª do corredor {melhorCorredor}, ele demorou {menorTempo}s para completara')
