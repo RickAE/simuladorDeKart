@@ -11,7 +11,7 @@ pilotos = []
 menorTempo = 100
 melhorVolta = 100
 melhorCorredor = ''
-
+classificao = {}
 
 ##Dever ter 6, caso menos, teste
 for p in range(2): ##Laço para definição dos corredores
@@ -19,24 +19,31 @@ for p in range(2): ##Laço para definição dos corredores
     nome = input(f"Digite o nome do {p+1}º corredor ")
     corredor.append(nome)
     tempos = []
+    somaTempos = 0
     ##Deve ter 10, caso menos, teste
     for v in range(3): #For para a definição dos tempos
         tempo = int(input(f"Digite o tempo do {p+1}º corredor, em segundos, da {v+1} volta "))
         tempos.append(tempo)
-        somaTempos = 0
+        somaTempos = somaTempos+tempo
 
         if tempo < menorTempo:
             menorTempo = tempo
             melhorCorredor = nome
             melhorVolta = v+1
 
-        somaTempos += tempo
-
+    classificao[nome] = somaTempos
     corredor.append(tempos)
     pilotos.append(corredor)
 
 
-print(melhorCorredor)
-print(melhorVolta)
+# print(melhorCorredor)
+# print(melhorVolta)
 
-print(f'A melhor volta foi a {melhorVolta}ª do corredor {melhorCorredor}, ele demorou {menorTempo}s para completara')
+print(f'A melhor volta foi a {melhorVolta}ª do corredor {melhorCorredor}, ele demorou {menorTempo}s para completa-la')
+
+print(classificao)
+
+clas = 1
+for i in sorted(classificao, key = classificao.get):
+    print(f'{clas}º {i}')
+    clas = clas + 1
